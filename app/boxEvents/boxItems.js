@@ -1,24 +1,32 @@
 import Icon from 'react-native-vector-icons/Ionicons'
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { StyleSheet, Text,Image, View } from 'react-native';
 
-export default BoxItems = (props) => {
-  const infoPrev = props.data
-  return (
-    <View style={styles.boxItem}>
-      <Image style={styles.img} source={{uri: infoPrev.img}}/>
-      <View style={styles.infoBox}>
-        <Text style={styles.textTitle}>{infoPrev.name}</Text>
-        <Text style={styles.textSubtitle}>{infoPrev.enter}</Text>
-        <Text>{infoPrev.stars}</Text>
-        <Icon name="ios-heart-outline" style={styles.HeartIcon}/>
-        <Text>{infoPrev.reviews} Reviews</Text>
+export default class BoxItems extends PureComponent {
+  constructor(props) {
+    super()
+    this.infoPrev = props.data
+  }
+
+  render () {
+    return (
+      <View style={styles.boxItem}>
+        <Image style={styles.img} source={{uri: this.infoPrev.img}}/>
+        <View style={styles.infoBox}>
+          <Text style={styles.textTitle}>{this.infoPrev.name}</Text>
+          <Text style={styles.textSubtitle}>{this.infoPrev.enter}</Text>
+          <Text>{this.infoPrev.stars}</Text>
+          <View style={styles.comments}>
+            <Icon name="ios-heart-outline" style={styles.HeartIcon}/>
+            <Text>{this.infoPrev.reviews} Reviews</Text>
+          </View>
+        </View>
       </View>
-    </View>
-  );
+    )
+  }
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
   boxItem:{
     width:200,
@@ -28,7 +36,7 @@ styles = StyleSheet.create({
   },
 
   HeartIcon:{
-    fontSize:20,
+    fontSize:25,
     color:'grey'
   },
 
@@ -51,5 +59,19 @@ styles = StyleSheet.create({
   textSubtitle:{
     fontSize:14,
     fontWeight: 'bold',
+  },
+
+  infoBox:{
+    flex:1,
+    width:200,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  comments:{
+    width:150,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection:'row',
   }
 })

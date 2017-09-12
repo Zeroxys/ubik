@@ -6,22 +6,47 @@ import BoxItems from './boxItems.js'
 export default class BoxEvents extends Component {
   constructor(props) {
     super()
-    this.getBoxes = this.getBoxes.bind(this)
+    this.renderItem = this.renderItem.bind(this)
   }
 
-  getBoxes(){
-    return(Array(5).fill)    
+  renderItem(item) {
+    return (
+      <BoxItems data = {item}/>
+    )
   }
 
   render() {
 
-    const data = {
-      img : 'https://static.pexels.com/photos/167605/pexels-photo-167605.jpeg',
-      name : 'Concert',
-      stars: 2,
+    const data = [{
+      key:1,
+      img : 'http://www.mormonnewsroom.org/media/640x360/Latin_Event16_2015.jpg',
+      name : 'Cultural',
+      stars: 8,
       enter: 'free'
-    }
+    },
+    {
+      key:2,
+      img: 'https://kena.com/wp-content/uploads/2017/04/sep7timodia_Show_Fotos_10_Signos_Ph_Nancy_Martinez_2-759x500.jpg',
+      name : 'Limited Event',
+      stars: 3,
+      enter: 'Cover'
+    },
+    {
+      key:3,
+      img:'https://learn.uvm.edu/wordpress_3_4b/wp-content/uploads/Hackathon-655x329.jpg',
+      name : 'Technology',
+      stars: 16,
+      enter: 'free'
+    },
+    {
+      key:4,
+      img: 'http://media.lonelyplanet.com/lpi/26190/26190-2/681x454.jpg',
+      name : 'Private Concert',
+      stars: 16,
+      enter: 'free'
+    }]
 
+    const datos = data
     return (
       <View style={styles.events}>
 
@@ -35,9 +60,12 @@ export default class BoxEvents extends Component {
           </View>
 
           <View style={styles.boxContent}>
-            
-          <BoxItems data = {data}/>
-          <BoxItems data = {data}/>
+          
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={datos}
+            renderItem = {({item}) => this.renderItem(item)}/>
 
           </View>
 
@@ -50,8 +78,7 @@ export default class BoxEvents extends Component {
 styles = StyleSheet.create({
 
   events:{
-    flexDirection: 'column',
-    flexDirection:'row',
+    flexDirection: 'row',
   },
 
   eventsInfo:{
@@ -63,7 +90,6 @@ styles = StyleSheet.create({
     flexDirection:'row',  
     justifyContent: 'space-between',
     alignItems: 'center',
-    fontSize:20,
     padding:10
   },
 
@@ -87,20 +113,8 @@ styles = StyleSheet.create({
     fontSize:25,
   },
 
-  infoBox:{
-    display:'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   boxContent:{
     flexDirection:'row',
-  },
-
-  boxItem:{
-    width:200,
-    height: 400,
-    marginLeft : 15
   },
 
   HeartIcon:{
@@ -109,7 +123,7 @@ styles = StyleSheet.create({
   },
 
   img:{
-    width: 200,
+    width: 180,
     height:280,
   },
 
