@@ -1,6 +1,7 @@
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component, PureComponent } from 'react';
-import { StyleSheet, Text,Image, View } from 'react-native';
+import { StyleSheet, Text,Image, View, TouchableOpacity} from 'react-native';
+import {Router, Scene, Actions} from 'react-native-router-flux'
 
 export default class BoxItems extends PureComponent {
   constructor(props) {
@@ -8,20 +9,27 @@ export default class BoxItems extends PureComponent {
     this.infoPrev = props.data
   }
 
+  handleFunction(event){
+    console.warn('event :', event)
+    Actions.eventDetail({event:event})
+  }
+
   render () {
     return (
-      <View style={styles.boxItem}>
-        <Image style={styles.img} source={{uri: this.infoPrev.img}}/>
-        <View style={styles.infoBox}>
-          <Text style={styles.textTitle}>{this.infoPrev.name}</Text>
-          <Text style={styles.textSubtitle}>{this.infoPrev.enter}</Text>
-          <Text>{this.infoPrev.stars}</Text>
-          <View style={styles.comments}>
-            <Icon name="ios-heart-outline" style={styles.HeartIcon}/>
-            <Text>{this.infoPrev.reviews} Reviews</Text>
+      <TouchableOpacity onPress={() => this.handleFunction(this.infoPrev)}>
+        <View style={styles.boxItem}>
+          <Image style={styles.img} source={{uri: this.infoPrev.img}}/>
+          <View style={styles.infoBox}>
+            <Text style={styles.textTitle}>{this.infoPrev.name}</Text>
+            <Text style={styles.textSubtitle}>{this.infoPrev.enter}</Text>
+            <Text>{this.infoPrev.stars}</Text>
+            <View style={styles.comments}>
+              <Icon name="ios-heart-outline" style={styles.HeartIcon}/>
+              <Text>{this.infoPrev.reviews} Reviews</Text>
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
