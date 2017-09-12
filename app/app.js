@@ -32,7 +32,7 @@ styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems:'flex-start',
     flexDirection: 'column',
-    backgroundColor: 'lightgrey'
+    backgroundColor: '#E7E5DF'
   },
 })
 
