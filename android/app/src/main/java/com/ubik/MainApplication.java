@@ -3,6 +3,7 @@ package com.ubik;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -14,9 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
-//import com.facebook.CallbackManager;
-//import com.facebook.FacebookSdk;
-//import com.facebook.appevents.AppEventsLogger;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -32,27 +33,27 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new VectorIconsPackage(),
-            new MapsPackage()
-            //new FBSDKPackage(mCallbackManager)
+            new MapsPackage(),
+            new FBSDKPackage(mCallbackManager)
       );
     }
   };
 
-  //private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
 
-  /*protected static CallbackManager getCallbackManager() {
+  protected static CallbackManager getCallbackManager() {
 
     return mCallbackManager;
-  }*/
+  }
 
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
   }
 
-  /*@Override
+  @Override
   public void onCreate() {
     super.onCreate();
     AppEventsLogger.activateApp(this);
-  }*/
+  }
 }

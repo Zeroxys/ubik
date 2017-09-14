@@ -13,7 +13,7 @@ export default class ubik extends Component {
     return (
       <Router>
         <Scene key="root"> 
-          <Scene key="login" component={LoginView} hideNavBar={true}/>
+          <Scene key="home" component={HomeView} hideNavBar={true}/>
           <Scene key="eventDetail" component={EventDetailView} hideNavBar={true}/>
           <Scene key="listAllEvents" component={ListAllEventsView} hideNavBar={true}/>
         </Scene>
