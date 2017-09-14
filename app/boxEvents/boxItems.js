@@ -1,6 +1,6 @@
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component, PureComponent } from 'react';
-import { StyleSheet, Text,Image, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text,Image, View, TouchableOpacity, Platform} from 'react-native';
 import {Router, Scene, Actions} from 'react-native-router-flux'
 
 export default class BoxItems extends PureComponent {
@@ -10,7 +10,6 @@ export default class BoxItems extends PureComponent {
   }
 
   handleFunction(event){
-    console.warn('event :', event)
     Actions.eventDetail({event:event})
   }
 
@@ -37,7 +36,7 @@ export default class BoxItems extends PureComponent {
 const styles = StyleSheet.create({
 
   boxItem:{
-    width:200,
+    width:180,
     height: 400,
     marginLeft : 15,
     alignItems: 'center',
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
   },
 
   img:{
-    width: 200,
+    width: 180,
     height:280,
   },
 

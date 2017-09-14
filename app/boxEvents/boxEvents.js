@@ -1,13 +1,18 @@
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import BoxItems from './boxItems.js'
-import {Router, Scene} from 'react-native-router-flux'
+import {Router, Scene, Actions} from 'react-native-router-flux'
 
 export default class BoxEvents extends Component {
   constructor(props) {
     super()
     this.renderItem = this.renderItem.bind(this)
+    this.seeMore = this.seeMore.bind(this)
+  }
+
+  seeMore(datos){
+    Actions.listAllEvents({datos : datos})
   }
 
   renderItem(item) {
@@ -26,7 +31,7 @@ export default class BoxEvents extends Component {
       enter: 'free',
       rate: 'A',
       schedule : '16:00 - 17:00 hrs',
-      review : 'If I soon end up in a psychiatric ward, could someone please send the bill to Andrew Lloyd Webber?'
+      review : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
       key:2,
@@ -66,20 +71,20 @@ export default class BoxEvents extends Component {
         <View style={styles.eventsInfo}>
           <View style={styles.information}>
             <Text style={styles.title}>Nearby</Text>
-            <View style={styles.seeMore}>
+
+            <TouchableOpacity style={styles.seeMore} onPress={() => this.seeMore(datos)}>
               <Text style={styles.seeAll}>See all</Text>
               <Icon name="ios-arrow-forward-outline" style={styles.ArrowIcon} />
-            </View>
+            </TouchableOpacity>
+
           </View>
 
           <View style={styles.boxContent}>
-          
             <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
               data={datos}
               renderItem = {({item}) => this.renderItem(item)}/>
-
           </View>
 
         </View>
@@ -92,10 +97,6 @@ styles = StyleSheet.create({
 
   events:{
     flexDirection: 'row',
-  },
-
-  eventsInfo:{
-    flex:1
   },
 
   information:{
@@ -115,7 +116,7 @@ styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width:70
+    width:70,
   },
 
   seeAll:{
