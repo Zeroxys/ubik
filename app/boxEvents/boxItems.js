@@ -2,11 +2,14 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component, PureComponent } from 'react';
 import { StyleSheet, Text,Image, View, TouchableOpacity, Platform} from 'react-native';
 import {Router, Scene, Actions} from 'react-native-router-flux'
+import Spinner from 'react-native-loading-spinner-overlay';
+import LoadingBox from '../loadingBox/loadingBox'
 
 export default class BoxItems extends PureComponent {
   constructor(props) {
     super()
     this.infoPrev = props.data
+    this.handleFunction = this.handleFunction.bind(this)
   }
 
   handleFunction(event){
@@ -14,8 +17,10 @@ export default class BoxItems extends PureComponent {
   }
 
   render () {
+
     return (
-      <TouchableOpacity onPress={() => this.handleFunction(this.infoPrev)}>
+      <TouchableOpacity onPress={() => this.handleFunction(this.infoPrev)}>        
+      
         <View style={styles.boxItem}>
           <Image style={styles.img} source={{uri: this.infoPrev.img}}/>
           <View style={styles.infoBox}>
@@ -28,6 +33,7 @@ export default class BoxItems extends PureComponent {
             </View>
           </View>
         </View>
+
       </TouchableOpacity>
     )
   }

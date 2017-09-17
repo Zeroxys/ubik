@@ -12,10 +12,19 @@ export default class ubik extends Component {
   render() {
     return (
       <Router>
-        <Scene key="root"> 
-          <Scene key="home" component={HomeView} hideNavBar={true}/>
-          <Scene key="eventDetail" component={EventDetailView} hideNavBar={true}/>
-          <Scene key="listAllEvents" component={ListAllEventsView} hideNavBar={true}/>
+        <Scene key="login">
+          <Scene key="auth" component={LoginView} hideNavBar={true}/>
+
+          <Scene key="root">
+            <Scene key="home" component={HomeView} hideNavBar={true}/>
+            <Scene key="eventDetail" component={EventDetailView} hideNavBar={true}/>
+            <Scene key="listAllEvents" component={ListAllEventsView} hideNavBar={true}/>          
+          </Scene>
+
+          <Scene key="menu">
+            <Scene key="home" component={HomeView} hideNavBar={true}/>   
+          </Scene>
+
         </Scene>
       </Router>
     );
