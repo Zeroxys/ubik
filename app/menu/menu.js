@@ -1,17 +1,37 @@
 import React, {Component} from 'react'
-import {Text, View} from 'react-native'
+import {Text, View, StyleSheet, Dimensions} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+
+const width = Dimensions.get('window').width
 
 export default class Menu extends Component {
   constructor(props){
     super()
-    this.data = props.name
   }
 
   render(){
     return (
-      <View>
-        <Text>{this.data}</Text>
+      <View style={styles.contain}>
+        <Icon style={styles.size} name="ios-home-outline"/>
+        <Icon style={styles.size} name="ios-map-outline"/>
+        <Icon style={styles.size} name="ios-add-outline"/>
+        <Icon style={styles.size} name="ios-contact-outline"/>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  contain : {
+    width : width,
+    height: 40,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    justifyContent : 'space-around',
+    alignItems: 'center',
+  },
+
+  size : {
+    fontSize : 25
+  }
+})

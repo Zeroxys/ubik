@@ -59,6 +59,8 @@ export default class HomeView extends Component {
           showsHorizontalScrollIndicator={false}
           data={this.state.data}
           renderItem = {({item}) => this.renderItem(item)}/>
+
+          <Menu/>
       </View>
     );
   }
@@ -66,6 +68,7 @@ export default class HomeView extends Component {
 
 styles = StyleSheet.create({
   container : {
+    flex:1,
     justifyContent: 'space-between',
     alignItems:'flex-start',
     flexDirection: 'column',
