@@ -60,7 +60,6 @@ export default class HomeView extends Component {
           data={this.state.data}
           renderItem = {({item}) => this.renderItem(item)}/>
 
-          <Menu/>
       </View>
     );
   }

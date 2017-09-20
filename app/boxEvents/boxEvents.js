@@ -70,7 +70,7 @@ export default class BoxEvents extends Component {
           review : 'If I soon end up in a psychiatric ward, could someone please send the bill to Andrew Lloyd Webber?'
         }]
       })
-    },6000)
+    },1000)
   }
 
   render() {

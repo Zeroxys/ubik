@@ -3,12 +3,13 @@
     android:versionCode="1"
     android:versionName="1.0">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="26" />
 
     <application
       android:name=".MainApplication"
@@ -18,11 +19,6 @@
       android:theme="@style/AppTheme">
 
         <!--<meta-data android:name="com.facebook.sdk.AplicationId" android:value="@string/facebook_app_id"/>-->
-
-      <meta-data
-      android:name="com.google.android.geo.API_KEY"
-      android:value="AIzaSyDSxMyTUpQO20Pquevn2AYlyuvlAgdgANI"/>
-
 
      <activity android:name="com.facebook.FacebookActivity"
          android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -43,6 +39,10 @@
       </activity>
 
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDu9kQLX1Ym9KJvSj_Lna6WP5NQxJPoqHc"/>
     </application>
 
 </manifest>

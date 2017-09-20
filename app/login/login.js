@@ -11,14 +11,15 @@ export default class LoginView extends Component {
 
   loginFunction (err, result){
     if(err){
-      console.warn(err)
+      alert('Network is unreachable')
     } else if(result.isCancelled){
-      console.warn("login cancelled")
+      alert("login cancelled")
     } else {
       AccessToken.getCurrentAccessToken().then(
         (data) => {
-          alert(data.accessToken.toString())          
-          Actions.home()          
+          alert(data.accessToken.toString())   
+          console.log(data)       
+          Actions.root()
         }
       )
     }
