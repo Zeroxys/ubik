@@ -3,18 +3,7 @@ import BoxEvent from '../boxEvents/boxEvents.js'
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component } from 'react';
 import Menu from '../menu/menu'
-import {
-  StyleSheet,
-  Text,
-  Button,
-  Alert,
-  Dimensions,
-  Image,
-  View,
-  FlatList,
-  VirtualizedList,
-  SectionList
-} from 'react-native';
+import { StyleSheet, Text, Dimensions, View, FlatList,} from 'react-native';
 
 const {width, height} = Dimensions.get('window') 
 
@@ -53,25 +42,19 @@ export default class HomeView extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
 
         <FlatList
           showsHorizontalScrollIndicator={false}
           data={this.state.data}
           renderItem = {({item}) => this.renderItem(item)}/>
 
-      </View>
     );
   }
 }
 
 styles = StyleSheet.create({
   container : {
-    flex:1,
-    justifyContent: 'space-between',
-    alignItems:'flex-start',
-    flexDirection: 'column',
     backgroundColor: '#d6d4e2'
-  },
+  }
 })
 

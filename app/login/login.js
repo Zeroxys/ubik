@@ -17,8 +17,6 @@ export default class LoginView extends Component {
     } else {
       AccessToken.getCurrentAccessToken().then(
         (data) => {
-          alert(data.accessToken.toString())   
-          console.log(data)       
           Actions.root()
         }
       )

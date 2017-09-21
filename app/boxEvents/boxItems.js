@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     height: 400,
     marginLeft : 15,
     alignItems: 'center',
+    backgroundColor: '#ECEFF1'
   },
 
   HeartIcon:{

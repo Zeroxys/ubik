@@ -58,15 +58,6 @@ export default class Map extends Component {
   render(){
     return (
     <View style={styles.container}>
-      {/*<Text>{this.state.region.latitude}</Text>
-      <Text>{this.state.region.longitude}</Text>
-      <Text>{this.state.region.longitudeDelta}</Text>
-      <Text>{this.state.region.latitudeDelta}</Text>
-      <Text>{this.state.region.accuracy}</Text>
-      <Text>{this.state.error}</Text>
-      <Text>{this.state.visible}</Text>*/}
-      <Text>{this.state.region.accuracy}</Text>
-      {/*<MapView style={styles.map} region={this.state.region}/>*/}
       {this.state.region.latitude ? <MapView style={styles.map} region={this.state.region}/>:null}
     </View>
     )

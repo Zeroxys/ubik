@@ -70,17 +70,16 @@ export default class BoxEvents extends Component {
           review : 'If I soon end up in a psychiatric ward, could someone please send the bill to Andrew Lloyd Webber?'
         }]
       })
-    },1000)
+    },0)
   }
 
   render() {
 
     const datos = this.state.data
     return (
-      <View style={styles.events}>
+      <View>
 
-        <View style={styles.eventsInfo}>
-          <View style={styles.information}>
+          <View style={styles.boxInfo}>
             <Text style={styles.title}>{this.boxType.name}</Text>
 
             <TouchableOpacity style={styles.seeMore} onPress={() => this.seeMore(datos)}>
@@ -98,7 +97,6 @@ export default class BoxEvents extends Component {
               renderItem = {({item}) => this.renderItem(item)}/>
           </View>
 
-        </View>
       </View>
     );
   }
@@ -106,13 +104,8 @@ export default class BoxEvents extends Component {
 
 styles = StyleSheet.create({
 
-  events:{
-    flexDirection: 'row',
-  },
-
-  information:{
-    display:'flex',
-    flexDirection:'row',  
+  boxInfo:{
+    flexDirection:'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding:10,
@@ -120,7 +113,7 @@ styles = StyleSheet.create({
   },
 
   title:{
-    fontSize: 20,
+    fontSize: 18,
     color: '#3c3c3c'
   },
 
@@ -131,36 +124,9 @@ styles = StyleSheet.create({
     width:70,
   },
 
-  seeAll:{
-    fontSize: 16,
-  },
-
-  ArrowIcon:{
-    fontSize:25,
-  },
-
-  boxContent:{
-    flexDirection:'row',
-  },
-
-  HeartIcon:{
-    fontSize:20,
-    color:'grey'
-  },
-
-  img:{
-    width: 180,
-    height:280,
-  },
-
   textTitle:{
     fontSize:16,
     fontWeight: 'bold',
     color: 'black'
-  },
-
-  textSubtitle:{
-    fontSize:14,
-    fontWeight: 'bold',
   }
 })
