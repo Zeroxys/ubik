@@ -65,14 +65,14 @@ const styles = StyleSheet.create({
   },
 
   textTitle:{
-    fontSize:16,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: '200',
     color: 'black'
   },
 
   textSubtitle:{
     fontSize:14,
-    fontWeight: 'bold',
+    fontWeight: '200',
   },
 
   infoBox:{
@@ -88,4 +88,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection:'row',
   }
+  
 })

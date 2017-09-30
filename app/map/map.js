@@ -26,8 +26,8 @@ export default class Map extends Component {
     let oneDegreeOfLongitudeMeters = 111.32
     let circunference = (40075 / 360)
 
-    let latDelta = accuracy * ( 1 / (Math.cos(lat) * circunference))
-    let lonDelta = (accuracy / oneDegreeOfLongitudeMeters)
+    let latDelta = parseFloat(accuracy * ( 1 / (Math.cos(lat) * circunference)))
+    let lonDelta = parseFloat((accuracy / oneDegreeOfLongitudeMeters))
 
     this.setState({
       region: {

@@ -8,12 +8,6 @@ import LoginView from './login/login'
 import ProfileView from './profile/profile.js'
 import MapView from './map/map'
 
-/*
-  <Scene key="home" component={HomeView} hideNavBar={true}/>
-  <Scene key="eventDetail" component={EventDetailView} hideNavBar={true}/>
-  <Scene key="listAllEvents" component={ListAllEventsView} hideNavBar={true}/>
-  */
-
 export default class ubik extends Component {
 
   render() {

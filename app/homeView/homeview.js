@@ -42,19 +42,11 @@ export default class HomeView extends Component {
 
   render() {
     return (
-
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          data={this.state.data}
-          renderItem = {({item}) => this.renderItem(item)}/>
-
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        data={this.state.data}
+        renderItem = {({item}) => this.renderItem(item)}/>
     );
   }
 }
-
-styles = StyleSheet.create({
-  container : {
-    backgroundColor: '#d6d4e2'
-  }
-})
 
