@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Text, View, StyleSheet, Image, Button} from 'react-native'
 import FBSDK, {LoginButton, AccessToken} from 'react-native-fbsdk'
 import {Actions} from 'react-native-router-flux'
+import TwitterButton from '../twitter/twitterButton'
 
 export default class LoginView extends Component {
   constructor(){
@@ -55,6 +56,8 @@ export default class LoginView extends Component {
               readPermissions={['public_profile', 'email']}
               onLoginFinished={this.loginFunction}
               />
+
+              <TwitterButton/>
           </View>
 
           <View style={styles.socialButtons}>

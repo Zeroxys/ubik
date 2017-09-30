@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "watchman watch-del-all && npm cache clean && cd android && ./gradlew clean && cd ..",
-    "android-linux": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android",    
+    "android-linux": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
@@ -16,6 +16,7 @@
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-maps": "^0.16.4",
     "react-native-router-flux": "^4.0.0-beta.21",
+    "react-native-twitter-signin": "^1.0.2",
     "react-native-vector-icons": "^4.3.0"
   },
   "devDependencies": {

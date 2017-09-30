@@ -3,6 +3,7 @@ package com.ubik;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.goldenowl.twittersignin.TwitterSigninPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new TwitterSigninPackage(),
             new MapsPackage(),
             new VectorIconsPackage(),
             new FBSDKPackage(mCallbackManager)
