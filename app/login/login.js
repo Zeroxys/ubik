@@ -50,17 +50,13 @@ export default class LoginView extends Component {
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source = {{uri: 'https://cdn4.iconfinder.com/data/icons/cloud-computing-2/500/cloud-network-sign-512.png'}}/>
         
-          <View style={styles.socialButtons}>
-            <LoginButton
-              style={styles.fbutton}
-              readPermissions={['public_profile', 'email']}
-              onLoginFinished={this.loginFunction}
-              />
 
-              <TwitterButton/>
+          <View style={styles.socialButtons}>
+            <LoginButton style={styles.fbutton} readPermissions={['public_profile', 'email']} onLoginFinished={this.loginFunction}/>
+            <TwitterButton/>
           </View>
 
-          <View style={styles.socialButtons}>
+          <View style={styles.sociaConditions}>
             <Text style={styles.terms}>I agree to the terms and conditions</Text>
           </View>
         
@@ -73,7 +69,7 @@ export default class LoginView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    padding:20
+    padding:20,
   },
 
   logoContainer:{
@@ -89,16 +85,15 @@ const styles = StyleSheet.create({
 
   socialContain:{
     flex:1,
-    backgroundColor:'red',
     position: 'absolute',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   socialButtons:{
     flex:1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
 
   logo:{
@@ -111,10 +106,12 @@ const styles = StyleSheet.create({
   fbutton:{    
     width: 150,
     height:32,
+    marginBottom: 10
   },
 
   terms:{
     color: 'white',
     fontWeight: '400'
   }
+
 })
