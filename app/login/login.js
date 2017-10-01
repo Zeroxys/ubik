@@ -1,11 +1,21 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, Image, Button} from 'react-native'
+import {Text, View, StyleSheet, Image, NetInfo} from 'react-native'
 import TwitterButton from '../twitter/twitterButton'
 import FacebookButton from '../facebook/facebookButton'
 
 export default class LoginView extends Component {
   constructor(){
     super()
+  }
+
+  componentWillMount () {
+    NetInfo.isConnected.fetch()
+    .then( isConnected => {
+      if(!isConnected) alert('Tu dispositivo esta ' + (isConnected ? '' : 'offline' + ' te recomendamos mantener tu dispositivo conectado para estar actualizado'));
+    })
+    .catch(error => {
+      alert(error);
+    });
   }
 
   render(){

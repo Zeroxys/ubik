@@ -8,6 +8,10 @@ export default class FacebookButton extends Component {
     super()
     this.loginFunction = this.loginFunction.bind(this)
     this.initUser = this.initUser.bind(this)
+
+    this.state = {
+      isLogged : false
+    }
   }
 
   initUser(token){
@@ -36,7 +40,7 @@ export default class FacebookButton extends Component {
       AccessToken.getCurrentAccessToken().then(
         (data) => {
           this.initUser(data)
-          Actions.root()
+          if(data) Actions.root()
         }
       )
     }
