@@ -1,46 +1,11 @@
 import React, {Component} from 'react'
 import {Text, View, StyleSheet, Image, Button} from 'react-native'
-import FBSDK, {LoginButton, AccessToken} from 'react-native-fbsdk'
-import {Actions} from 'react-native-router-flux'
 import TwitterButton from '../twitter/twitterButton'
+import FacebookButton from '../facebook/facebookButton'
 
 export default class LoginView extends Component {
   constructor(){
     super()
-    this.loginFunction = this.loginFunction.bind(this)
-    this.initUser = this.initUser.bind(this)
-  }
-
-  initUser(token){
-    fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=' + token)
-    .then((response) => response.json())
-    .then((json) => {
-      user.name = json.name
-      user.id = json.id
-      user.user_friends = json.friends
-      user.email = json.email
-      user.username = json.name
-      user.loading = false
-      user.loggedIn = true
-    })
-    .catch(() => {
-      reject('ERROR GETTING DATA FROM FACEBOOK')
-    })
-  }
-
-  loginFunction (err, result){
-    if(err){
-      alert('Network is unreachable')
-    } else if(result.isCancelled){
-      alert("login cancelled")
-    } else {
-      AccessToken.getCurrentAccessToken().then(
-        (data) => {
-          this.initUser(data)
-          Actions.root()
-        }
-      )
-    }
   }
 
   render(){
@@ -49,14 +14,13 @@ export default class LoginView extends Component {
         
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source = {{uri: 'https://cdn4.iconfinder.com/data/icons/cloud-computing-2/500/cloud-network-sign-512.png'}}/>
-        
-
+      
           <View style={styles.socialButtons}>
-            <LoginButton style={styles.fbutton} readPermissions={['public_profile', 'email']} onLoginFinished={this.loginFunction}/>
+            <FacebookButton/>
             <TwitterButton/>
           </View>
 
-          <View style={styles.sociaConditions}>
+          <View>
             <Text style={styles.terms}>I agree to the terms and conditions</Text>
           </View>
         
@@ -101,12 +65,6 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     resizeMode: 'contain'
-  },
-
-  fbutton:{    
-    width: 150,
-    height:32,
-    marginBottom: 10
   },
 
   terms:{
