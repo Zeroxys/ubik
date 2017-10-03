@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component } from 'react';
 import Menu from '../menu/menu'
 import { StyleSheet, Text, Dimensions, View, FlatList,} from 'react-native';
+import axios from 'axios'
 
 const {width, height} = Dimensions.get('window') 
 
@@ -21,22 +22,21 @@ export default class HomeView extends Component {
     )
   }
 
-  componentWillMount(){
-    this.setState({
-      data : [
-        { 
-          key:1,
-          name : 'Nearby'
-        },
-        { 
-          key:2,
-          name : 'Around'
-        },
-        { 
-          key:3,
-          name : 'External'
-        },
-      ]
+  handleError (err) {
+    if (err) throw err
+  }
+
+  componentDidMount(){
+    fetch('https://urbanica.site/api/categories', {
+      method: 'GET'
+    }).then( result => {
+      return result.json().then( json => {
+        this.setState({
+          data : json
+        })
+      })
+    }).catch(err => {
+      if(err) throw err
     })
   }
 

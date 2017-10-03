@@ -26,7 +26,7 @@ export default class BoxEvents extends Component {
     )
   }
 
-  componentWillMount(){
+  componentDidMount(){
     setTimeout(() => {
       this.setState({
         data : [{
@@ -71,6 +71,8 @@ export default class BoxEvents extends Component {
         }]
       })
     },0)
+
+    console.warn('repeat things')
   }
 
   render() {
