@@ -14,12 +14,17 @@ export default class ubik extends Component {
   constructor(){
     super()
     this.TabIcon = this.TabIcon.bind(this)
+    this.state = {
+      select : true
+    }
   }
 
   TabIcon () {
-    return (
-      <Icon name="ios-home-outline" style={{fontSize: 20}}></Icon>
+    let icon = this.state.select ? 'ios-home' : 'ios-home-outline'
+    return  (
+      <Icon name={icon} style={{fontSize: 20}}></Icon>
     )
+    
   }
 
   render() {
