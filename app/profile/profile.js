@@ -2,15 +2,17 @@ import React, {Component} from 'react'
 import {View, Text, Image, StyleSheet} from 'react-native'
 
 export default class ProfileView extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+    profile : this.props.profileInfo
   }
 
   render(){
     return(
     <View style={styles.container}>
-        <Image style={styles.img} source={{uri: 'https://ep01.epimg.net/elpais/imagenes/2016/08/23/estilo/1471959470_244538_1471959574_miniatura_normal.jpg'}}/>
-      <Text>Soy el perfil sdad</Text>
+      <Text>{this.profile}</Text>
+      <Text>dasdasdsa</Text>
+      <Image style={styles.img} source={{uri: 'https://ep01.epimg.net/elpais/imagenes/2016/08/23/estilo/1471959470_244538_1471959574_miniatura_normal.jpg'}}/>
     </View>
     )
   }

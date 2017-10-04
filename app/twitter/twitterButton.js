@@ -36,7 +36,8 @@ export default class TwitterButton extends Component {
         this.setState({
           isLogged: true,
         })
-        if(this.state.isLogged) Actions.root()
+        console.warn(authToken)
+        //if(this.state.isLogged) Actions.root()
       }
     }).catch((error)=>{
       alert(error)

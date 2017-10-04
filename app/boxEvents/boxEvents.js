@@ -27,52 +27,19 @@ export default class BoxEvents extends Component {
   }
 
   componentDidMount(){
-    setTimeout(() => {
-      this.setState({
-        data : [{
-          key:1,
-          img : 'http://www.mormonnewsroom.org/media/640x360/Latin_Event16_2015.jpg',
-          name : 'Cultural',
-          stars: 8,
-          enter: 'free',
-          rate: 'A',
-          schedule : '16:00 - 17:00 hrs',
-          review : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          key:2,
-          img: 'https://kena.com/wp-content/uploads/2017/04/sep7timodia_Show_Fotos_10_Signos_Ph_Nancy_Martinez_2-759x500.jpg',
-          name : 'Limited Event',
-          stars: 3,
-          enter: 'Cover',
-          rate: 'A',
-          schedule : '16:00 - 17:00 hrs',
-          review : 'If I soon end up in a psychiatric ward, could someone please send the bill to Andrew Lloyd Webber?'
-        },
-        {
-          key:3,
-          img:'https://learn.uvm.edu/wordpress_3_4b/wp-content/uploads/Hackathon-655x329.jpg',
-          name : 'Technology',
-          stars: 16,
-          enter: 'free',
-          rate: 'A',
-          schedule : '16:00 - 17:00 hrs',
-          review : 'If I soon end up in a psychiatric ward, could someone please send the bill to Andrew Lloyd Webber?'
-        },
-        {
-          key:4,
-          img: 'http://media.lonelyplanet.com/lpi/26190/26190-2/681x454.jpg',
-          name : 'Private Concert',
-          stars: 16,
-          enter: 'free',
-          rate: 'A',
-          schedule : '16:00 - 17:00 hrs',
-          review : 'If I soon end up in a psychiatric ward, could someone please send the bill to Andrew Lloyd Webber?'
-        }]
+    fetch('http://10.0.3.2:5000/api/events', {
+      method : 'GET'
+    }).then( result => {
+      return result.json().then( json => {
+        this.setState({
+          data : json
+        })
+      }).catch( err => {
+        throw err
       })
-    },0)
-
-    console.warn('repeat things')
+    }).catch(err => {
+      alert(err)
+    })
   }
 
   render() {

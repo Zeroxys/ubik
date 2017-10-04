@@ -37,7 +37,7 @@ export default class HomeView extends Component {
       })
     }).catch(err => {
       if(err) throw err
-    })
+    }).done()
   }
 
   render() {
