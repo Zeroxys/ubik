@@ -37,7 +37,7 @@ export default class TwitterButton extends Component {
           isLogged: true,
         })
         console.warn(authToken)
-        //if(this.state.isLogged) Actions.root()
+        if(this.state.isLogged) Actions.root()
       }
     }).catch((error)=>{
       alert(error)
@@ -64,12 +64,9 @@ export default class TwitterButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  contain : {
-    flex: 1
-  },
 
   icon: {
     width: 150,
-    height: 30,
+    height:32,
   }
 });

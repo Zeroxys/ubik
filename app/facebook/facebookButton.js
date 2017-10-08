@@ -24,7 +24,7 @@ export default class FacebookButton extends Component {
         isLogged : !this.state.isLogged,
         profile : json
       })
-      if(this.state.isLogged) Actions.root({text:'hello'})
+      if(this.state.isLogged) Actions.root()
     })
     .catch(() => {
       reject('ERROR GETTING DATA FROM FACEBOOK')
@@ -40,7 +40,7 @@ export default class FacebookButton extends Component {
       AccessToken.getCurrentAccessToken().then(
         (token) => {
           this.initUser(token.accessToken.toString())
-          /*if(token) Actions.root()*/
+          if(token) Actions.root()
         }
       ).catch( err => alert(err))
     }
@@ -57,7 +57,5 @@ const styles = StyleSheet.create({
   fbutton:{    
     width: 150,
     height:32,
-    marginBottom: 10,
-    borderRadius: 100
   },
 })

@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, Image, NetInfo} from 'react-native'
+import {Text, View, StyleSheet, Image, NetInfo, Dimensions} from 'react-native'
 import TwitterButton from '../twitter/twitterButton'
 import FacebookButton from '../facebook/facebookButton'
+
+const {width, height} = Dimensions.get('window')
 
 export default class LoginView extends Component {
   constructor(){
@@ -20,66 +22,61 @@ export default class LoginView extends Component {
 
   render(){
     return(
-      <Image style={styles.container} source = {{uri: 'https://i.pinimg.com/originals/cd/c3/d2/cdc3d2e93d3e2c5f3722ad471d3b798f.jpg'}}>
-        
-        <View style={styles.logoContainer}>
-          <Image style={styles.logo} source = {{uri: 'https://cdn4.iconfinder.com/data/icons/cloud-computing-2/500/cloud-network-sign-512.png'}}/>
+      <Image style={styles.container} source = {{uri: 'https://static.pexels.com/photos/417192/pexels-photo-417192.jpeg'}}>
+
+        <View style={styles.principalContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Urbanik</Text>
+          </View>
       
           <View style={styles.socialButtons}>
             <FacebookButton/>
             <TwitterButton/>
           </View>
-
-          <View>
-            <Text style={styles.terms}>I agree to the terms and conditions</Text>
-          </View>
-        
         </View>
+
+        <View>
+          <Text style={styles.terms}>I agree to the terms and conditions</Text>
+        </View>
+
       </Image>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    padding:20,
-  },
-
-  logoContainer:{
-    flex:1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
+  
   img:{
     flex:1,
-    resizeMode:'cover',
   },
 
-  socialContain:{
+  container : {
+    flex: 1,
+    alignItems: 'center'
+  },
+
+  principalContainer: {
     flex:1,
-    position: 'absolute',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
 
-  socialButtons:{
-    flex:1,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+  title: {
+    fontSize : 60,
+    color: 'white',
+    fontWeight: '600',
   },
 
-  logo:{
-    flex: 1,
-    width: 180,
-    height: 180,
-    resizeMode: 'contain'
+  socialButtons: {
+    width: width,
+    flexDirection : 'row',
+    justifyContent : 'space-around'
   },
 
   terms:{
     color: 'white',
-    fontWeight: '400'
-  }
+    fontWeight: '400',
+    paddingBottom : 30
+  },
 
 })

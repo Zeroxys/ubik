@@ -22,10 +22,10 @@ export default class TabsNav extends Component {
 
   TabIcon (IconName) {
     let icon = this.state.select ? IconName : `${IconName}-outline`
+    console.log(Scene)
     return  (
       <Icon name={icon} style={{fontSize: 20}}/>
     )
-    
   }
 
   render() {
@@ -35,9 +35,9 @@ export default class TabsNav extends Component {
           <Scene key="auth" component={LoginView} hideNavBar={true}/>
 
           <Scene key="root" hideNavBar={true}>
-            <Tabs key="tabsbar" tabBarPosition='bottom' swipeEnabled={false}>
+            <Tabs key="tabsbar" tabBarPosition='bottom' swipeEnabled={false} activeTintColor={'coral'}>
               
-              <Scene key="home" title="home" hideNavBar={true} icon={() => this.TabIcon('ios-home')} onPress={ () => console.warn()}>
+              <Scene key="home" title="home" hideNavBar={true} icon={() => this.TabIcon('ios-home')}>
                 <Scene key="profile" component={HomeView}/>
                 <Scene key="eventDetail" component={EventDetailView} hideNavBar={true}/>
                 <Scene key="listAllEvents" component={ListAllEventsView} hideNavBar={true}/>
@@ -48,16 +48,12 @@ export default class TabsNav extends Component {
               </Scene>
               
 
-              <Scene key="add" hideNavBar={true} icon={() => this.TabIcon('ios-add')}>
-                <Scene key="profileView" component={ProfileView}/>
-              </Scene>
-
-              <Scene key="Camera" hideNavBar={true} icon={() => this.TabIcon('ios-camera')}>
-                <Scene key="profileView" component={ProfileView}/>
+              <Scene key="add" hideNavBar={true} icon={() => this.TabIcon('ios-share')}>
+                <Scene key="mapview" component={ListAllEventsView}/>
               </Scene>
 
               <Scene key="Profile" hideNavBar={true} icon={() => this.TabIcon('ios-person')}>
-                <Scene key="profileView" component={ProfileView}/>
+                <Scene key="mapview" component={ListAllEventsView}/>
               </Scene>
 
             </Tabs>
