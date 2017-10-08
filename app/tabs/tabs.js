@@ -38,7 +38,7 @@ export default class TabsNav extends Component {
             <Tabs key="tabsbar" tabBarPosition='bottom' swipeEnabled={false} activeTintColor={'coral'}>
               
               <Scene key="home" title="home" hideNavBar={true} icon={() => this.TabIcon('ios-home')}>
-                <Scene key="profile" component={HomeView}/>
+                <Scene key="home" component={HomeView}/>
                 <Scene key="eventDetail" component={EventDetailView} hideNavBar={true}/>
                 <Scene key="listAllEvents" component={ListAllEventsView} hideNavBar={true}/>
               </Scene>
@@ -53,7 +53,7 @@ export default class TabsNav extends Component {
               </Scene>
 
               <Scene key="Profile" hideNavBar={true} icon={() => this.TabIcon('ios-person')}>
-                <Scene key="mapview" component={ListAllEventsView}/>
+                <Scene key="profile" component={ProfileView}/>
               </Scene>
 
             </Tabs>

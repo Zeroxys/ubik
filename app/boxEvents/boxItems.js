@@ -1,9 +1,11 @@
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component, PureComponent } from 'react';
-import { StyleSheet, Text,Image, View, TouchableOpacity, Platform} from 'react-native';
+import { StyleSheet, Text,Image, View, TouchableOpacity, Platform, Dimensions} from 'react-native';
 import {Router, Scene, Actions} from 'react-native-router-flux'
 import Spinner from 'react-native-loading-spinner-overlay';
 import LoadingBox from '../loadingBox/loadingBox'
+
+const {width, height} = Dimensions.get('window')
 
 export default class BoxItems extends PureComponent {
   constructor(props) {
@@ -18,20 +20,27 @@ export default class BoxItems extends PureComponent {
 
   render () {
 
+    let review = this.infoPrev.review
+    if(review.length > 50) review = review.substring(0,100)
+
     return (
       <TouchableOpacity onPress={() => this.handleFunction(this.infoPrev)}>        
       
-        <View style={styles.boxItem}>
+        <View style={styles.boxItem}>          
           <Image style={styles.img} source={{uri: this.infoPrev.img}}/>
+          
           <View style={styles.infoBox}>
-            <Text style={styles.textTitle}>{this.infoPrev.name}</Text>
-            <Text style={styles.textSubtitle}>{this.infoPrev.enter}</Text>
-            <Text>{this.infoPrev.stars}</Text>
+            <View style={styles.mainInformation}>
+              <Text style={[styles.textTitle, styles.textColor]}>{this.infoPrev.name}</Text>
+              <Text style={styles.textColor}>{review}</Text>
+            </View>
+           
             <View style={styles.comments}>
-              <Icon name="ios-heart-outline" style={styles.HeartIcon}/>
-              <Text>{this.infoPrev.reviews} Reviews</Text>
+              <Icon name="ios-heart" style={styles.heartIcon}><Text>10</Text></Icon>
+              <Icon name="md-share" style={styles.shareIcon}><Text>3</Text></Icon>
             </View>
           </View>
+
         </View>
 
       </TouchableOpacity>
@@ -40,53 +49,43 @@ export default class BoxItems extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-
-  boxItem:{
-    width:180,
-    height: 400,
-    marginLeft : 15,
-    alignItems: 'center',
-    backgroundColor: '#ECEFF1'
-  },
-
-  HeartIcon:{
-    fontSize:25,
-    color:'grey'
-  },
-
-  ArrowIcon:{
-    fontSize:17,
-    color:'grey'
-  },
-
-  img:{
-    width: 180,
-    height:280,
-  },
-
-  textTitle:{
-    fontSize: 15,
-    fontWeight: '200',
-    color: 'black'
-  },
-
-  textSubtitle:{
-    fontSize:14,
-    fontWeight: '200',
-  },
-
-  infoBox:{
-    flex:1,
-    width:200,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  comments:{
-    width:150,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection:'row',
-  }
   
+  img: {
+    height: 200,
+    width : width,
+  },
+  
+  infoBox: {
+    height: 100,
+    flexDirection  : 'row',
+    borderColor: '#ECECED',
+    borderBottomWidth: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+
+  mainInformation: {
+    width: 300,
+    justifyContent: 'space-around',
+    alignItems : 'center'
+  },
+
+  textColor : {
+    color : '#87888C'
+  },
+
+  comments: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+
+  heartIcon : {
+    fontSize: 17   
+  },
+
+  shareIcon : {
+    fontSize: 17   
+  }
 })
