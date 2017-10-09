@@ -27,7 +27,7 @@ export default class HomeView extends Component {
   }
 
   componentDidMount(){
-    fetch('https://urbanica.site/api/categories', {
+    fetch('http://10.0.3.2:5000/api/categories', {
       method: 'GET'
     }).then( result => {
       return result.json().then( json => {
