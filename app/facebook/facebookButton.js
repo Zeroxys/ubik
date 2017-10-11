@@ -1,30 +1,36 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, AsyncStorage} from 'react-native'
 import FBSDK, {LoginButton, AccessToken} from 'react-native-fbsdk'
 import {Actions} from 'react-native-router-flux'
-import Profile from '../profile/profile'
 
 export default class FacebookButton extends Component {
   constructor(){
     super()
-    this.loginFunction = this.loginFunction.bind(this)
-    this.initUser = this.initUser.bind(this)
-
     this.state = {
       isLogged : false,
-      profile : null
+      user : null
     }
+    this.loginFunction = this.loginFunction.bind(this)
+    this.initUser = this.initUser.bind(this)
   }
 
   initUser(token){
     fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=' + token)
-    .then((response) => response.json())
-    .then((json) => {
+    .then( (response) => response.json())
+    .then( async (json) => {
+      
       this.setState({
-        isLogged : !this.state.isLogged,
-        profile : json
+        isLogged : true,
+        user : json
       })
-      if(this.state.isLogged) Actions.root()
+      
+      try {
+        await AsyncStorage.setItem('@FacebookUser', JSON.stringify(json))
+      }catch (err){
+        alert('Some error : ' + err)
+      } 
+
+      if (this.state.isLogged) Actions.root()
     })
     .catch(() => {
       reject('ERROR GETTING DATA FROM FACEBOOK')
@@ -37,10 +43,9 @@ export default class FacebookButton extends Component {
     } else if(result.isCancelled){
       alert("login cancelled")
     } else {
-      AccessToken.getCurrentAccessToken().then(
-        (token) => {
+      AccessToken.getCurrentAccessToken()
+      .then( (token) => {
           this.initUser(token.accessToken.toString())
-          if(token) Actions.root()
         }
       ).catch( err => alert(err))
     }
@@ -48,7 +53,10 @@ export default class FacebookButton extends Component {
 
   render(){
     return(
-      <LoginButton style={styles.fbutton} readPermissions={['public_profile', 'email']} onLoginFinished={this.loginFunction}/>
+      <LoginButton 
+        style={styles.fbutton} 
+        readPermissions={['public_profile', 'email']} 
+        onLoginFinished={this.loginFunction}/>
     )
   }
 }

@@ -1,13 +1,24 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, Image, NetInfo, Dimensions} from 'react-native'
+import {Text, View, StyleSheet, Image, NetInfo, Dimensions, AsyncStorage} from 'react-native'
 import TwitterButton from '../twitter/twitterButton'
 import FacebookButton from '../facebook/facebookButton'
+import {Actions} from 'react-native-router-flux'
 
 const {width, height} = Dimensions.get('window')
 
 export default class LoginView extends Component {
   constructor(){
     super()
+    this.auth = this.auth.bind(this)
+  }
+
+  async auth () {
+    try {
+      let value = await AsyncStorage.getItem('@FacebookUser')
+      if (value) Actions.root()
+    } catch (err) {
+      alert('User not Auth')
+    }
   }
 
   componentWillMount () {
