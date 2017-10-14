@@ -9,16 +9,6 @@ const {width, height} = Dimensions.get('window')
 export default class LoginView extends Component {
   constructor(){
     super()
-    this.auth = this.auth.bind(this)
-  }
-
-  async auth () {
-    try {
-      let value = await AsyncStorage.getItem('@FacebookUser')
-      if (value) Actions.root()
-    } catch (err) {
-      alert('User not Auth')
-    }
   }
 
   componentWillMount () {

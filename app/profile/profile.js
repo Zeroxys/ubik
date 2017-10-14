@@ -8,57 +8,23 @@ export default class ProfileView extends Component {
     this.state = {
       profile : ''
     }
-    this.getInformation = this.getInformation.bind(this)
-    this.deleteInformation = this.deleteInformation.bind(this)
-    this.allInformation = this.allInformation.bind(this)
-    this.meet = this.meet.bind(this)
   }
 
-  meet () {
-    alert('hi')
-  }
-
-  async allInformation () {
+  async componentDidMount() {
     try {
-      let value = await AsyncStorage.getAllKeys()
-      alert(value)
-    }catch (err) {
-      alert('Some error : ' + err)
-    }
-  }
-
-  async deleteInformation () {
-    try {
-      await AsyncStorage.clear()
-    }catch (err) {
-      alert('CANNOT DELETE THE STORAGE')
-    }
-  }
-
-  async getInformation () {
-    try {
-      const value = await AsyncStorage.getItem('@FacebookUser')
-      if ( value !== null ) {
-        this.setState({
-          profile : value
-        })
-      }
+      let value = await AsyncStorage.getItem('@FacebookUser')
+      let info = JSON.parse(value)
+      this.setState({profile : info})
     }catch (err){
-      alert('Error retrieving the data')
+      alert('Error recibir la info ' + err)
     }
   }
-
-  componentWillMount() {
-    this.getInformation()
-  }
-
+  
   render () {
-    let profileInfo = this.state.profile
     return (
       <View>
-        <Text>{profileInfo}</Text>
-        <Text onPress={this.deleteInformation}>delete the storage</Text>
-        <Text onPress={this.allInformation}>all key's</Text>
+        <Text>{this.state.profile.name}</Text>
+        <Text>{this.state.profile.id}</Text>
         <FacebookButton/>
       </View>
     )

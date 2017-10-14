@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {StyleSheet} from 'react-native'
+import {AsyncStorage} from 'react-native'
 import {Router, Scene, Tabs} from 'react-native-router-flux'
 import HomeView from '../homeView/homeview'
 import EventDetailView from '../eventDetail/eventDetail'
@@ -7,17 +7,20 @@ import ListAllEventsView from '../listAllEvents/listAllEvents'
 import LoginView from '../login/login'
 import ProfileView from '../profile/profile.js'
 import MapView from '../map/map'
-import Icon from 'react-native-vector-icons/dist/Ionicons';
+import Icon from 'react-native-vector-icons/dist/Ionicons'
+import FBSDK, {AccessToken} from 'react-native-fbsdk'
 
 export default class TabsNav extends Component {
 
   constructor(){
     super()
-    this.TabIcon = this.TabIcon.bind(this)
     this.state = {
       select : true,
-      init: true
+      init: true,
+      logged : false
     }
+    this.TabIcon = this.TabIcon.bind(this)
+    this.isLogged = this.isLogged.bind(this)
   }
 
   TabIcon (IconName) {
@@ -28,11 +31,30 @@ export default class TabsNav extends Component {
     )
   }
 
+  async isLogged() {
+    let value =  await AccessToken.getCurrentAccessToken()
+    if(value) {
+      this.setState({
+        logged : true
+      })
+    }else{
+      this.setState({
+        logged : false
+      })
+    }
+    //console.warn(this.state.logged)
+  }
+
+  componentWillMount() {
+    this.isLogged()
+  }
+
   render() {
     return (
       <Router>
         <Scene key="login">
-          <Scene key="auth" component={LoginView} hideNavBar={true}/>
+        {/*<Scene key="auth" component={this.state.logged ? HomeView:LoginView} hideNavBar={true}/>*/}
+        <Scene key="auth" component={LoginView} hideNavBar={true}/>
 
           <Scene key="root" hideNavBar={true}>
             <Tabs key="tabsbar" tabBarPosition='bottom' swipeEnabled={false} activeTintColor={'coral'}>

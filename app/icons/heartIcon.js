@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FBSDK, {ShareApi, ShareDialog} from 'react-native-fbsdk'
 
@@ -7,6 +7,12 @@ import FBSDK, {ShareApi, ShareDialog} from 'react-native-fbsdk'
 export default class HeartIcon extends Component {
   constructor (props) {
     super()
+    this.shareLinkContent = {
+      contentType: 'link',
+      contentUrl: "https://urbanica.site",
+      redirect_uri: 'https://urbanica.site',
+      contentDescription: 'Wow, check out this great site!',
+    }
     this.like = this.like.bind(this)
     this.share = this.share.bind(this)
   }
@@ -16,20 +22,13 @@ export default class HeartIcon extends Component {
   }
 
   share () {
-    const shareLinkContent = {
-      contentType: 'link',
-      contentUrl: "https://facebook.com",
-      contentDescription: 'Wow, check out this great site!',
-    };
 
-    ShareDialog.canShow(shareLinkContent).then(
-        function(canShow) {
+    ShareDialog.canShow(shareLinkContent).then( (canShow) => {
           if (canShow) {
-            return ShareDialog.show(shareLinkContent);
+            return ShareDialog.show(this.shareLinkContent)
           }
         }
-      ).then(
-        function(result) {
+      ).then( (result)  => {
           if (result.isCancelled) {
             alert('share cancelled')
           }else {
@@ -45,8 +44,12 @@ export default class HeartIcon extends Component {
   render () {
     return (
       <View style={styles.comments}>
-        <Icon name="ios-heart" style={styles.heartIcon} onPress={this.like}><Text>10</Text></Icon>
-        <Icon name="md-share" style={styles.shareIcon} onPress = {this.share}><Text>3</Text></Icon>
+        <TouchableOpacity>
+          <Icon name="ios-heart" style={styles.heartIcon}><Text>10</Text></Icon>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icon name="md-share" style={styles.shareIcon} onPrress = {this.share}><Text>3</Text></Icon>
+        </TouchableOpacity>
       </View>
     )
   }
