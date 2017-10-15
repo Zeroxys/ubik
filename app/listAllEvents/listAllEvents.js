@@ -18,7 +18,7 @@ export default class ListAllEventsView extends Component {
 
   render(){
     return (
-      <View>
+      <View style={styles.listItems} >
         <FlatList
           showsHorizontalScrollIndicator={true}
           data={this.data}
@@ -30,7 +30,6 @@ export default class ListAllEventsView extends Component {
 
 const styles = StyleSheet.create({
   listItems : {
-    flexDirection: 'row',
-    backgroundColor: 'yellow'
+    padding: 5
   }
 })

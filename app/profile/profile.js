@@ -22,15 +22,27 @@ export default class ProfileView extends Component {
   
   render () {
     return (
-      <View>
+      <View style = {styles.content}>
+        <Image style={styles.profilePicture} source = {{uri : `https://graph.facebook.com/v2.5/${this.state.profile.id}/picture?type=large`}}/>
         <Text>{this.state.profile.name}</Text>
-        <Text>{this.state.profile.id}</Text>
         <FacebookButton/>
       </View>
     )
   }
 }
-
-
-//<Image style={{width: 80, height: 80}} source = {{uri : `https://graph.facebook.com/v2.5/${info.id}/picture?type=large`}}/>
 //<Text>{info.id}</Text>
+
+const styles = new StyleSheet.create({
+  content : {
+    flex:1,
+    backgroundColor : 'lightgrey',
+    justifyContent : 'space-around',
+    alignItems: 'center',
+  },
+
+  profilePicture : {
+    width: 150, 
+    height: 150,
+    borderRadius: 100
+  }
+})
