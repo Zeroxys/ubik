@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, Image, NetInfo, Dimensions, AsyncStorage} from 'react-native'
+import {Text, View, StyleSheet, Image, NetInfo, Dimensions, AsyncStorage, StatusBar} from 'react-native'
 import TwitterButton from '../twitter/twitterButton'
 import FacebookButton from '../facebook/facebookButton'
 import {Actions} from 'react-native-router-flux'
@@ -23,30 +23,37 @@ export default class LoginView extends Component {
 
   render(){
     return(
-      <Image style={styles.container} source = {{uri: 'https://static.pexels.com/photos/417192/pexels-photo-417192.jpeg'}}>
+      <View style={styles.content}>
+        <StatusBar backgroundColor="#14a1cc" barStyle="light-content"/>
+        <Image style={styles.container} source = {{uri: 'https://static.pexels.com/photos/417192/pexels-photo-417192.jpeg'}}>
 
-        <View style={styles.principalContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Urbanik</Text>
+          <View style={styles.principalContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>Urbanik</Text>
+            </View>
+        
+            <View style={styles.socialButtons}>
+              <FacebookButton/>
+              <TwitterButton/>
+            </View>
           </View>
-      
-          <View style={styles.socialButtons}>
-            <FacebookButton/>
-            <TwitterButton/>
+
+          <View>
+            <Text style={styles.terms}>I agree to the terms and conditions</Text>
           </View>
-        </View>
 
-        <View>
-          <Text style={styles.terms}>I agree to the terms and conditions</Text>
-        </View>
-
-      </Image>
+        </Image>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
   
+  content : {
+    flex: 1
+  },
+
   img:{
     flex:1,
   },

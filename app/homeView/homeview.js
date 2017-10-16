@@ -3,8 +3,7 @@ import BoxEvent from '../boxEvents/boxEvents.js'
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component } from 'react';
 import Menu from '../menu/menu'
-import { StyleSheet, Text, Dimensions, View, FlatList,} from 'react-native';
-import axios from 'axios'
+import { StyleSheet, Text, Dimensions, View, FlatList,} from 'react-native'
 
 const {width, height} = Dimensions.get('window') 
 

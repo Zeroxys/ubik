@@ -1,6 +1,9 @@
 import Icon from 'react-native-vector-icons/Ionicons'
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image,Button } from 'react-native';
+import { StyleSheet, ListView, Text, View, Image, Button, Dimensions } from 'react-native';
+import {Actions} from 'react-native-router-flux'
+
+const {width} = Dimensions.get('window')
 
 export default class EventDetail extends Component {
   constructor (props) {
@@ -10,20 +13,20 @@ export default class EventDetail extends Component {
   }
 
   onPressMap(){
-
+    Actions.mapview()
   }
 
   render() {
     return (
       <View style={styles.mainContent}>
-        <Text style={styles.textTitle}>{this.eventData.name}</Text>
         <View style={styles.basicInform}>
           
           <Image style={styles.img} source={{uri:this.eventData.img}}/>
           
           <View style={styles.information}>
+            <Text style={styles.textTitle}>{this.eventData.name}</Text>
             <Text style={styles.textSub}>{this.eventData.enter}</Text>
-            <Text style={styles.textSub}>classification: {this.eventData.rate}</Text>
+            {/*<Text style={styles.textSub}>classification: {this.eventData.rate}</Text>*/}
             <Text style={styles.textSub}>Schedule: {this.eventData.schedule}</Text>
           </View>
 
@@ -46,21 +49,16 @@ export default class EventDetail extends Component {
 
 const styles = StyleSheet.create({
 
-  mainContent:{
-    marginLeft: 10,
-    marginRight: 10
-  },
-
   img:{
-    width : 180,
-    height : 300,
+    width: width,
+    height: 200,
   },
 
   textTitle: {
-    color:'black',
+    color:'grey',
     fontSize: 25,
     paddingBottom:5,
-    fontWeight: 'bold',
+    fontWeight: '200',
   },
 
   textSub: {
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
   },
 
   basicInform:{
-    flexDirection: 'row'
+    flexDirection: 'column'
   },
 
   information:{

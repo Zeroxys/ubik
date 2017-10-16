@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import BoxItems from './boxItems.js'
 import {Router, Scene, Actions} from 'react-native-router-flux'
+import Search from '../search/search'
+
 
 export default class BoxEvents extends Component {
   constructor(props) {
@@ -45,10 +47,13 @@ export default class BoxEvents extends Component {
   render() {
 
     const datos = this.state.data
-    return (
-      <View>
 
+    return (
+      <View> 
+        {/*<Search/>*/}
+      <View>
           <View style={styles.boxInfo}>
+            
             <Text style={styles.title}>{this.boxType.name}</Text>
 
             <TouchableOpacity style={styles.seeMore} onPress={() => this.seeMore(datos)}>
@@ -65,6 +70,8 @@ export default class BoxEvents extends Component {
               data={datos}
               renderItem = {({item}) => this.renderItem(item)}/>
           </View>
+
+      </View>
 
       </View>
     );

@@ -18,7 +18,8 @@
     "react-native-maps": "^0.16.4",
     "react-native-router-flux": "^4.0.0-beta.21",
     "react-native-twitter-signin": "^1.0.2",
-    "react-native-vector-icons": "^4.3.0"
+    "react-native-vector-icons": "^4.3.0",
+    "tcomb-form-native": "^0.6.10"
   },
   "devDependencies": {
     "babel-jest": "21.0.0",

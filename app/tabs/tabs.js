@@ -9,6 +9,7 @@ import ProfileView from '../profile/profile.js'
 import MapView from '../map/map'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
 import FBSDK, {AccessToken} from 'react-native-fbsdk'
+import Form from '../form/form'
 
 export default class TabsNav extends Component {
 
@@ -71,7 +72,7 @@ export default class TabsNav extends Component {
               
 
               <Scene key="add" hideNavBar={true} icon={() => this.TabIcon('ios-share')}>
-                <Scene key="mapview" component={ListAllEventsView}/>
+                <Scene key="mapview" component={Form}/>
               </Scene>
 
               <Scene key="Profile" hideNavBar={true} icon={() => this.TabIcon('ios-person')}>
