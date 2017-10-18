@@ -1,20 +1,40 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, TouchableHighlight, ScrollView} from 'react-native'
+import {Text, View, StyleSheet, TouchableHighlight, ScrollView, Image} from 'react-native'
 import t from 'tcomb-form-native'
+import moment from 'moment'
 
 
 const Form = t.form.Form
-const options = {}
+const maxDate = new Date()
+const options = {
+  fields : {
+    fechaEvento : {
+      config : {
+        format: (date) => moment(date).format('DD/MM/YYYY'), 
+      },
+      maximunDate : maxDate,
+      mode : 'date',
+      blurOnSubmit: true
+    },
+    horaDelEvento : {
+      config : {
+        format : (date) => moment(date).add(1, 'days').calendar()
+      },
+      mode: 'time',
+      blurOnSubmit : true
+    }
+  }
+}
 /*Form.stylesheet.dateValue.normal.borderColor = '#d0d2d3';
 Form.stylesheet.dateValue.normal.backgroundColor = '#f0f1f1';
 Form.stylesheet.dateValue.normal.borderWidth = 1;*/
 
 const Person = t.struct({
-  name: t.String,              // a required string
-  surname: t.maybe(t.String),  // an optional string
-  age: t.Number,               // a required number
-  rememberMe: t.Boolean,        // a boolean
-  birthDate: t.Date          // a calendar date
+  NombreDelEvento : t.String,              // a required string
+  descripcion: t.maybe(t.String),  // an optional string
+  ubicacionActual: t.Boolean,        // a boolean
+  horaDelEvento : t.Date,      // a calendar date
+  fechaEvento: t.Date          // a calendar date
 })
 
 const Busqueda = t.struct({
@@ -41,8 +61,10 @@ export default class Search extends Component {
     <ScrollView>
       <View>
         <View style={styles.content}>
-          <Text style={styles.titleHeader}>URBANIK</Text>
-          <Text style={styles.titleSubHeader}>Comparte tus eventos favoritos con los demas</Text>
+          <Image  style={styles.backImage} source={{uri : 'http://www.jpboneyard.com/_img/hoops-city.png'}}>
+            <Text style={styles.titleHeader}>URBANIK</Text>
+            <Text style={styles.titleSubHeader}>Comparte tus eventos favoritos con los demas</Text>
+          </Image>
         </View>
         
           <View style={styles.container}>
@@ -72,6 +94,11 @@ const styles = StyleSheet.create({
   content : {
     height:250,
     backgroundColor : '#002662',
+  },
+
+  backImage : {
+    flex:1,
+    resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
   },
